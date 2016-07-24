@@ -4,5 +4,5 @@ metadata
 
 group :integration do
   cookbook 'yum'
-  cookbook 'apt'
+  cookbook 'apt', '= 3.0.0'
 end

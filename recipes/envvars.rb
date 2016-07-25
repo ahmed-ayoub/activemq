@@ -1,5 +1,3 @@
-Chef::Log.info("USER_ID: #{node[:deploy]['simplephpapp'][:environment_variables][:REDIS_WRITABLE_IP]}")
-
 ruby_block  "set-app-var" do
   block do
     ENV["REDIS_WRITABLE_IP"] = node[:deploy]['simplephpapp'][:environment_variables][:REDIS_WRITABLE_IP]

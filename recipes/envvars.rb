@@ -1,4 +1,8 @@
-File.open("/etc/profile", 'a') { |file| file.write("REDIS_WRITABLE_IP="10.230.138.239") }
-File.open("/etc/profile", 'a') { |file| file.write("export REDIS_WRITABLE_IP") }
-File.open("/etc/profile", 'a') { |file| file.write("REDIS_WRITABLE_PORT="6379"") }
-File.open("/etc/profile", 'a') { |file| file.write("export REDIS_WRITABLE_PORT") }
+Chef::Log.info("USER_ID: #{node[:deploy]['simplephpapp'][:environment_variables][:REDIS_WRITABLE_IP]}")
+
+ruby_block  "set-app-var" do
+  block do
+    ENV["REDIS_WRITABLE_IP"] = node[:deploy]['simplephpapp'][:environment_variables][:REDIS_WRITABLE_IP]
+    ENV["REDIS_WRITABLE_PORT"] = node[:deploy]['simplephpapp'][:environment_variables][:REDIS_WRITABLE_PORT]
+  end
+end
